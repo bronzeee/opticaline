@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>首页</title>
+    <link rel="stylesheet" href="/static/css/semantic.css">
+    <link rel="stylesheet" href="/static/css/index.css">
+</head>
+<body>
+<div class="ui large inverted vertical sidebar menu">
+    <div class="item">
+        <b>分类</b>
+
+        <div class="menu">
+            <a class="item">
+                记事<span class="ui label">11</span>
+            </a>
+            <a class="item">
+                开发<span class="ui label">21</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="ui dropdown item">
+        <i class="add icon"></i> New
+        <div class="menu">
+            <a class="item" href="/feed/blog"><i class="rss icon"></i> Feed</a>
+            <a class="item"><i class="tag icon"></i> Tag</a>
+            <a class="item"><i class="folder icon"></i> Group</a>
+        </div>
+    </div>
+    {% if 'user' not in session %}
+        <a class="item" onclick="$('#login').modal('show')">
+            <i class="user icon"></i>登录
+        </a>
+    {% else %}
+        <a class="item">
+            <i class="settings icon"></i>操作台
+        </a>
+        <a class="item" href="/logout">
+            <i class="settings icon"></i>退出
+        </a>
+    {% endif %}
+</div>
+<div class="ui celled grid">
+    <div class="five wide middle column">
+        <div class="ui right floated black launch button">
+            <i class="list layout icon"></i> Menu
+        </div>
+        <h2 class="ui header">
+            <i class="inbox icon"></i>
+            文章
+        </h2>
+
+        <div class="ui divider"></div>
+
+        <div class="ui list selection list">
+            {% for b in blog_list %}
+                <a class="item">
+                    <div class="left floated ui star rating"><i class="icon"></i></div>
+                    <div class="right floated date">{{ b.CREATE_DATE.strftime('%Y-%m-%d') }}</div>
+                    <div class="description">{{ b.TITLE }}</div>
+                </a>
+            {% endfor %}
+        </div>
+
+        <div class="ui divider"></div>
+
+        <div class="page">Showing <b>{-{cities.length||0}-}</b> of 213</div>
+        <div class="ui pagination menu">
+            <a class="icon item">
+                <i class="left arrow icon"></i>
+            </a>
+            <a class="item">
+                {-{n}-}
+            </a>
+            <a class="icon item">
+                <i class="right arrow icon"></i>
+            </a>
+        </div>
+    </div>
+    <div class="twelve wide right column">
+        <h1 class="ui header">{{blog.TITLE}}</h1>
+        {% if blog.TAG != null %}
+        标签:
+            <a class="ui teal label">未读</a>
+        {% endif %}
+
+        <div class="ui feed segment">{{ blog.CONTENT }}
+        </div>
+        <div class="ui divider"></div>
+        <div class="ui basic button">修改</div>
+        <div class="ui basic button">删除</div>
+    </div>
+</div>
+<div id="login" class="ui modal small">
+    <div class="header">
+        登录
+    </div>
+    <div class="content">
+        <form action="/login" method="post">
+            <div class="ui form">
+                <div class="field">
+                    <label>用户名</label>
+
+                    <div class="ui left labeled icon input">
+                        <input type="text" name="username" placeholder="ID/邮箱/用户名">
+                        <i class="user icon"></i>
+
+                        <div class="ui corner label">
+                            <i class="icon asterisk"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>密码</label>
+
+                    <div class="ui left labeled icon input">
+                        <input type="password" name="password" placeholder="密码">
+                        <i class="lock icon"></i>
+
+                        <div class="ui corner label">
+                            <i class="icon asterisk"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="actions">
+        <div class="ui black button">
+            取消
+        </div>
+        <div class="ui positive right labeled icon button" onclick="$('form').submit()">
+            登录
+            <i class="checkmark icon"></i>
+        </div>
+    </div>
+</div>
+<script src="/static/javascript/angular.min.js"></script>
+<script src="/static/javascript/jquery-2.1.1.min.js"></script>
+<script src="/static/javascript/jquery.address.js"></script>
+<script src="/static/javascript/semantic.min.js"></script>
+<script>
+    $(function () {
+        $('.filter.menu .item').tab();
+        $('.ui.rating').rating({clearable: true});
+        $('.ui.sidebar').sidebar('attach events', '.launch.button');
+        $('.ui.dropdown').dropdown();
+        $('form :input').on("keyup", function (event) {
+            if (event.code == 13) {
+                $(this).parents("form").submit();
+            }
+        });
+    });
+</script>
+</body>
+</html>

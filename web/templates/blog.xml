@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+    <channel>
+        <title>开源中国社区最新软件</title>
+        <link>http://www.oschina.net/?from=rss</link>
+        <description>开源中国社区——找到您想要的开源软件，分享和交流</description>
+        <language>zh-CN</language>
+        <pubDate>Mon, 04 Aug 2014 18:35:53 +0800</pubDate>
+        <image>
+            <link>http://www.oschina.net/</link>
+            <url>http://www.oschina.net/img/logo.gif</url>
+            <title>OsChina.NET</title>
+        </image>
+        <item>
+            <title><![CDATA[Java 规划引擎 JBoss OptaPlanner]]></title>
+            <link>http://www.oschina.net/p/jboss-optaplanner</link>
+            <category>业务规则引擎</category>
+            <description><![CDATA[
+                <table width='100%'><tr/>
+                        <td valign='top'>OptaPlanner 是 Java 规划引擎：OptaPlanner 优化了商业资源调度和规划。 OptaPlanner 优化了商业资源的使用。OptaPlanner 是轻量级的，可嵌入的规划引擎。</td>
+                </tr></table>
+                ]]></description>
+            <pubDate>Mon, 04 Aug 2014 18:35:53 +0800</pubDate>
+            <guid>http://www.oschina.net/p/jboss-optaplanner</guid>
+        </item>
+    </channel>
+</rss>
